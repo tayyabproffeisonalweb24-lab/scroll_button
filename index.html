@@ -1,0 +1,240 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luxury Scroll Button</title>
+
+<style>
+/* ===== Global Styling ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #080F1C;
+    color: #F1F5F9;
+}
+
+/* ===== Demo Website Sections ===== */
+header {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 30px;
+    background:
+      radial-gradient(ellipse at top, #17345A 0%, transparent 55%),
+      #080F1C;
+}
+
+header span {
+    color: #46B4FF;
+    letter-spacing: 4px;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 18px;
+}
+
+header h1 {
+    font-size: clamp(36px, 6vw, 70px);
+    line-height: 1.12;
+    margin-bottom: 20px;
+}
+
+header h1 strong {
+    color: #46B4FF;
+}
+
+header p {
+    color: #9CAFC5;
+    max-width: 550px;
+    line-height: 1.8;
+}
+
+.content {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 40px;
+    text-align: center;
+    background: #0C1728;
+    border-top: 1px solid #1B2D43;
+}
+
+.content h2 {
+    font-size: clamp(30px, 5vw, 48px);
+    color: #EAF5FF;
+    margin-bottom: 15px;
+}
+
+.content p {
+    max-width: 500px;
+    line-height: 1.8;
+    color: #91A6BE;
+}
+
+/* ===== Luxury Scroll To Top Button ===== */
+#scrollTop {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+
+    width: 58px;
+    height: 58px;
+    border: 1px solid rgba(70, 180, 255, 0.65);
+    border-radius: 18px;
+
+    background: linear-gradient(145deg, #16375A, #10243C);
+    color: #66C5FF;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(18px) scale(0.9);
+
+    box-shadow:
+      0 8px 30px rgba(0, 0, 0, 0.35),
+      0 0 18px rgba(50, 160, 255, 0.10);
+
+    transition:
+      opacity 0.35s ease,
+      transform 0.35s ease,
+      visibility 0.35s ease,
+      background 0.3s ease,
+      box-shadow 0.3s ease;
+}
+
+/* Show button after scrolling */
+#scrollTop.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+}
+
+/* Hover Effect */
+#scrollTop:hover {
+    background: linear-gradient(145deg, #2085D5, #14569A);
+    color: #FFFFFF;
+    border-color: #72CEFF;
+    transform: translateY(-5px);
+    box-shadow:
+      0 12px 32px rgba(0, 120, 255, 0.22),
+      0 0 24px rgba(50, 170, 255, 0.30);
+}
+
+/* Arrow Animation */
+#scrollTop svg {
+    width: 25px;
+    height: 25px;
+    transition: transform 0.3s ease;
+}
+
+#scrollTop:hover svg {
+    transform: translateY(-3px);
+}
+
+#scrollTop:focus-visible {
+    outline: 3px solid #8DD8FF;
+    outline-offset: 5px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 600px) {
+    #scrollTop {
+        width: 50px;
+        height: 50px;
+        right: 18px;
+        bottom: 18px;
+        border-radius: 15px;
+    }
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Demo Hero Section -->
+<header id="home">
+    <span>PREMIUM DIGITAL EXPERIENCE</span>
+    <h1>SCROLL <strong>BUTTON.</strong></h1>
+    <p>
+        Modern technology, elegant design and powerful digital
+        experiences for your next-generation website.
+        Scroll down to discover the luxury scroll button.
+    </p>
+</header>
+
+<!-- Demo Content Sections -->
+<section class="content">
+    <div>
+        <h2>Premium Design</h2>
+        <p>Elegant interfaces with refined colors, smooth transitions
+        and a professional technology-inspired appearance.</p>
+    </div>
+</section>
+
+<section class="content" style="background:#080F1C;">
+    <div>
+        <h2>Modern Technology</h2>
+        <p>Responsive layouts and polished interactions
+        designed for desktop, tablet and mobile devices.</p>
+    </div>
+</section>
+
+<!-- Scroll To Top Button -->
+<button id="scrollTop" aria-label="Scroll to top"
+        title="Back to top">
+    <svg viewBox="0 0 24 24" fill="none"
+         stroke="currentColor" stroke-width="2"
+         stroke-linecap="round" stroke-linejoin="round"
+         aria-hidden="true">
+        <path d="M12 19V5"></path>
+        <path d="m5 12 7-7 7 7"></path>
+    </svg>
+</button>
+
+<script>
+// ===== Luxury Scroll Button Functionality =====
+const scrollTopBtn = document.getElementById("scrollTop");
+
+// Show button after scrolling 300px
+window.addEventListener("scroll", () => {
+    if (window.scrollY > 300) {
+        scrollTopBtn.classList.add("show");
+    } else {
+        scrollTopBtn.classList.remove("show");
+    }
+}, { passive: true });
+
+// Smoothly scroll back to the top
+scrollTopBtn.addEventListener("click", () => {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+});
+</script>
+
+</body>
+</html>
